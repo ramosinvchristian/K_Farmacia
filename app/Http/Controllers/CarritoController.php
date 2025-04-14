@@ -85,6 +85,9 @@ class CarritoController extends Controller
 
         session()->forget('carrito');
 
-        return redirect()->route('cliente.inicio')->with('success', '¡Compra realizada con éxito!');
+        session()->flash('ticket_id', $venta->id);
+
+        return redirect()->route('cliente.ticket', $venta->id);
+
     }
 }

@@ -2,6 +2,9 @@
 
 return [
 
+    'Pdf' => Barryvdh\DomPDF\Facade\Pdf::class,
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

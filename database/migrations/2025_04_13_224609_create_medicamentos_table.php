@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('medicamentos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('codigo')->unique();
-            $table->text('descripcion')->nullable();
+            $table->text('descripcion');
             $table->decimal('precio', 8, 2);
-            $table->integer('stock');
-            $table->string('imagen')->nullable(); // ruta a imagen
+            $table->integer('cantidad');
+            $table->string('categoria')->nullable();
+            $table->string('imagen')->nullable(); // URL o nombre de archivo
             $table->timestamps();
         });
     }

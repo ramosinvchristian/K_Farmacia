@@ -11,7 +11,6 @@ class ClienteController extends Controller
 {
     public function inicio()
     {
-        // Top 5 medicamentos más vendidos
         $destacados = Medicamento::select('medicamentos.*')
             ->join('detalle_ventas', 'medicamentos.id', '=', 'detalle_ventas.medicamento_id')
             ->groupBy('medicamentos.id')
@@ -19,7 +18,6 @@ class ClienteController extends Controller
             ->limit(5)
             ->get();
 
-        // Todos los medicamentos
         $medicamentos = Medicamento::all();
 
         return view('cliente.inicio', compact('destacados', 'medicamentos'));
@@ -30,7 +28,6 @@ class ClienteController extends Controller
         $ventas = auth()->user()->ventas()->with('detalles.medicamento')->orderByDesc('created_at')->get();
         return view('cliente.historial', compact('ventas'));
     }
-    use Barryvdh\DomPDF\Facade\Pdf;
 
     public function generarTicket($venta_id)
     {
@@ -38,5 +35,4 @@ class ClienteController extends Controller
         $pdf = Pdf::loadView('cliente.ticket', compact('venta'));
         return $pdf->download('ticket_venta_' . $venta->id . '.pdf');
     }
-    
 }
